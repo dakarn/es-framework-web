@@ -1,0 +1,58 @@
+<?php
+
+ $title = '';
+ include('header.html');
+
+?>
+<div id="audioContainer" style="display: none">
+
+</div>
+
+<div class="content">
+
+	<? Helper\FlashText::render() ?>
+
+	<h3>Список слов для изучения</h3>
+	<br>
+
+	<a href="" onClick="return showVanish();">Скоростное угадывание слова</a> |
+	<a href="">Сортировать по алфавиту</a> |
+	<a href="">Сортировать по сложности</a> |
+	<a href="">Сортировать как есть</a><br>
+
+	<a href="">Сортировать по сложности</a> |
+	<a href="" onclick="return Audio.play();">Воспроизвести слова</a>
+	<hr>
+
+	<div class="list">
+
+		<script>
+
+			let list      = [];
+			let list1     = [];
+
+		</script>
+
+		<? foreach($dictionaries as $index => $dictionary) : ?>
+
+			<div style="float: left;">
+				<div class=trans-text> <?=$index?>)  <?=$dictionary->getText()?> </div>
+
+				<script>
+					list.push("<?=$dictionary->getText()?>");
+					list1.push("<?=$dictionary->getTranslate()?>");
+					Audio.addList("<?=$dictionary->getText()?>");
+				</script>
+
+			</div>
+			<div style="float: right;">
+				<div class="trans-hover"><?=$dictionary->getTranslate()?></div>
+			</div><br>
+
+		<? endforeach; ?>
+
+	</div>
+
+</div>
+
+<? include('footer.html'); ?>

@@ -1,0 +1,8 @@
+    /**
+     * @return %s
+     */
+    public function get%s()%s
+    {
+        return $this->%s;
+    }
+

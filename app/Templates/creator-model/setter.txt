@@ -1,0 +1,10 @@
+    /**
+     * @param %s$%s
+     * @return %s
+     */
+    public function set%s(%s$%s): self
+    {
+        $this->%s = $%s;
+        return $this;
+    }
+

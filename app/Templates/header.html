@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title><?= $title ?></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="<?= URL ?>public/js/script.js"></script>
+	<script src="<?= URL ?>public/js/audio.js"></script>
+	<link rel="stylesheet" href="<?= URL ?>public/css/style.css">
+	<link rel="icon" type="image/x-icon" href="<?= URL ?>public/picture/favicon.png" />
+</head>
+<body>
+
+<header>
+
+	<h2><?=$title?></h2><br>
+
+	<div class="menu-list">
+
+		<a class=menu-item href="<?= URL?>add-word">Добавить слово</a>
+		<a class=menu-item href="<?= URL?>search-word">Поиск слова</a>
+		<a class=menu-item href="<?= URL?>random-word">Список случайных слов</a>
+		<a class=menu-item href="<?= URL?>">Главная</a>
+		<br><br>
+
+		<a class=menu-item href="">Войти через VK</a>
+		<a class=menu-item href="">Войти чере Mail</a>
+		<a class=menu-item href="">Войти чере Одноклассники</a><br><br>
+
+		<a class=menu-item href="<?= URL?>addIndex">Создать индекс</a>
+		<a class=menu-item href="<?= URL?>removeIndex">Удалить индекс</a>
+		<a class=menu-item href="<?= URL?>indexer/2/3">Индексировать</a>
+		<a class=menu-item href="<?= URL?>enterCommand">Выполнить команду</a><br><br>
+
+	</div>
+
+</header>
