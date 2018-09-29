@@ -1,0 +1,12 @@
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "https://github.com/dakarn/es-framework-kernel"
+    }
+  ],
+  "require": {
+		"php": "7.*",
+        "es-framework-kernel": "dev-master"
+    }
+}
