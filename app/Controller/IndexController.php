@@ -18,6 +18,8 @@ class IndexController extends AbstractController
 {
 	/**
 	 * @return Render
+	 * @throws \Exception\ObjectException
+	 * @throws \Exception\WidgetException
 	 */
 	public function indexAction(): Render
 	{
@@ -61,6 +63,7 @@ class IndexController extends AbstractController
 	/**
 	 * @param int $id
 	 * @return Render
+	 * @throws \Exception
 	 */
 	public function dictionaryAction(int $id): Render
 	{

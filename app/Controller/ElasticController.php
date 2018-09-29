@@ -13,6 +13,7 @@ class ElasticController extends AbstractController
 {
 	/**
 	 * @return Render
+	 * @throws \Exception\FileException
 	 */
 	public function addIndexAction(): Render
 	{
