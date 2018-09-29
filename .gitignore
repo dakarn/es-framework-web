@@ -4,3 +4,4 @@ composer
 composer.bat
 composer.lock
 composer.phar
+vendor
