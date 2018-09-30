@@ -1,14 +1,9 @@
 <?php
 
-define('PATH_LOADER', __DIR__ . '/vendor/autoload.php');
-define('PATH_SYSTEM', __DIR__ . '/vendor/es-framework-kernel/system/');
-define('PATH_APP', __DIR__  . '/app/');
 define('PSR_4', true);
-define('IS_DEV', \is_file('dev.bootstrap.php'));
+define('IS_DEV', \is_file('dev.php'));
 
-include_once PATH_SYSTEM . 'Helper/Util.php';
-
-\Helper\Util::selectLoaderClass();
+include_once __DIR__ . '/vendor/autoload.php';
 
 $event = new App\AppEvent();
 $event = $event->installEvents(new \System\EventListener\EventManager());

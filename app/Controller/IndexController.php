@@ -5,7 +5,6 @@ namespace App\Controller;
 use QueueManager\QueueModel;
 use QueueManager\QueueManager;
 use QueueManager\Senders\RedisQueueSender;
-use RedisQueue\RedisQueue;
 use System\Controller\AbstractController;
 use App\Model\Dictionary\DictionaryRepository;
 use App\Validator\SearchWordValidator;
@@ -18,10 +17,18 @@ class IndexController extends AbstractController
 {
 	/**
 	 * @return Render
+	 */
+	public function indexAction()
+	{
+		return $this->render('test.html');
+	}
+
+	/**
+	 * @return Render
 	 * @throws \Exception\ObjectException
 	 * @throws \Exception\WidgetException
 	 */
-	public function indexAction(): Render
+	public function index1Action(): Render
 	{
 	    $dataVideoFile = [
 	        'file'        => 'C:/Users/v.konovalov/Downloads/ffmpeg/video.mp4',
