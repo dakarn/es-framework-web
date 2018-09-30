@@ -29,7 +29,7 @@ class IndexController extends AbstractController
             'newPath'     => 'C:/Users/v.konovalov/Downloads/ffmpeg/',
         ];
 
-	    $res = ObjectMapper::create()->toObject([
+	    $res = ObjectMapper::create()->arrayToObject([
 	        'userId'    => 14,
             'name'      => 'dd',
             'userName'  => 'dsdsdsdsd',
@@ -37,7 +37,7 @@ class IndexController extends AbstractController
             'lastName'  => 'ccccccc'
         ], ModelTest::class);
 
-        ObjectMapper::create()->toArray($res);
+        ObjectMapper::create()->objectToArray($res);
 
 		$dictRepos = new DictionaryRepository();
 
@@ -67,11 +67,7 @@ class IndexController extends AbstractController
 	 */
 	public function dictionaryAction(int $id): Render
 	{
-		$dictRepos = new DictionaryRepository();
-
-		return $this->render('random-word.html', [
-			'dictionary' => $dictRepos->getDictionaryById($id)
-		]);
+		return $this->render('test.html');
 	}
 
 	/**
