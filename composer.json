@@ -5,8 +5,13 @@
       "url":  "https://github.com/dakarn/es-framework-kernel"
     }
   ],
-  "require": {
-		"php": "7.*",
-        "es-framework-kernel": "dev-master"
+  "autoload": {
+    "psr-4": {
+      "App\\": "app"
     }
+  },
+  "require": {
+    "php": "7.*",
+    "es-framework-kernel": "dev-master"
+  }
 }
