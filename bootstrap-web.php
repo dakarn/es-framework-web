@@ -1,7 +1,7 @@
 <?php
 
 define('PSR_4', true);
-define('IS_DEV', \is_file('dev.php'));
+define('IS_DEV', \is_file(__DIR__ . '/dev.php'));
 
 include_once __DIR__ . '/vendor/autoload.php';
 
@@ -17,7 +17,7 @@ if (IS_DEV) {
 	$env = 'DEV';
 }
 
-$application = (new \System\Kernel\TypesApp\WebApp())
+$application = (new \App\WebApp())
 	->setEnvironment($env)
 	->setAppEvent($event)
 	->setAppKernel($appKernel)
