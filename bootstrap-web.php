@@ -27,6 +27,10 @@ set_exception_handler(function($e) use($application) {
 	$application->outputException($e);
 });
 
+set_error_handler(function($e) use($application) {
+	$application->outputException($e);
+});
+
 register_shutdown_function(function() use($application) {
 	System\Kernel\ShutdownScript::run();
 });
