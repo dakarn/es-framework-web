@@ -1,6 +1,18 @@
 <?php
 
  $title = '';
- include('../header.html');
+ include(TEMPLATE . '/header.html');
 
 ?>
+
+<h1>Регистрация</h1>
+<br><br>
+
+<form action="" method="post">
+	<input type="text" name="login" placeholder="Логин*" class="form-control"><br>
+	<input type="text" name="login" placeholder="Email*" class="form-control"><br>
+	<input type="password" name="password" placeholder="Пароль*" class="form-control"><br>
+	<input type="text" name="username" placeholder="Имя" class="form-control"><br>
+	<input type="submit" class="btn btn-success" value="Присоединиться"><br>
+	<input type="hidden" name="CSRFToken" value="<?=Helper\CSRFTokenManager::create()->returnForForm()?>">
+</form>

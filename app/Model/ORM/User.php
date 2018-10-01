@@ -24,7 +24,7 @@ class User extends ORM
 
 	private $email;
 
-	public function __construct(array $properties)
+	public function __construct(array $properties = [])
 	{
 		$this->username = $properties['username'] ?? '';
 		$this->email    = $properties['email'] ?? '';
@@ -70,5 +70,10 @@ class User extends ORM
 		$this->password = $password;
 
 		return $this;
+	}
+
+	public function addUser()
+	{
+
 	}
 }
