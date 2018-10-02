@@ -8,7 +8,6 @@ use QueueManager\Senders\RedisQueueSender;
 use System\Controller\AbstractController;
 use App\Model\Dictionary\DictionaryRepository;
 use App\Validator\SearchWordValidator;
-use System\Database\DB;
 use System\Database\DBManager\Mapping\ObjectMapper;
 use System\Render;
 use Widget\WidgetFactory;
@@ -21,7 +20,6 @@ class IndexController extends AbstractController
 	 */
 	public function indexAction(): Render
 	{
-		print_r(DB::MySQLAdapter()->fetch('SELECT * FROM teacher.english_teacher LIMIT 10'));
 		return $this->render('test.html');
 	}
 

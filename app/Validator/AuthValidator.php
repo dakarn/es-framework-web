@@ -13,32 +13,27 @@ use System\Validators\AbstractValidator;
 class AuthValidator extends AbstractValidator
 {
 	/**
-	 * @var array
-	 */
-	private $errors = [
-		'Не корректный запрос.',
-	];
-
-	/**
 	 * @var bool
 	 */
 	public $isUseFlashErrors = true;
 
 	/**
-	 * @return void
+	 * @throws \Exception\FileException
 	 */
 	public function validate(): void
 	{
+		$message = $this->getFormMessage();
+
 		if (!$this->isPost()) {
-			$this->stackErrors['query'] = $this->errors[2];
+			$this->stackErrors['query'] = $message['query'];
 		}
 
 		if (empty($_POST['login'])) {
-			$this->stackErrors['login'] = $this->errors[0];
+			$this->stackErrors['login'] = $message['login'];
 		}
 
 		if (empty($_POST['password'])) {
-			$this->stackErrors['password'] = $this->errors[1];
+			$this->stackErrors['password'] = $message['password'];
 		}
 	}
 }

@@ -8,9 +8,11 @@
 
 namespace App;
 
+use Configs\Config;
 use Exception\ExceptionListener\ExceptionListener;
 use Http\Request\ServerRequest;
 use Http\Middleware\StorageMiddleware;
+use Http\Response\Text;
 use Providers\StorageProviders;
 use Http\Response\Response;
 use System\Database\DB;
@@ -18,6 +20,7 @@ use System\EventListener\EventTypes;
 use System\Logger\LoggerStorage;
 use System\Logger\LogLevel;
 use System\Kernel\TypesApp\AbstractApplication;
+use System\Render;
 
 final class WebApp extends AbstractApplication
 {
@@ -92,5 +95,24 @@ final class WebApp extends AbstractApplication
 	{
 		DB::disconnect();
 		LoggerStorage::create()->releaseLog();
+	}
+
+	/**
+	 * @param \Throwable $e
+	 * @throws \Throwable
+	 */
+	public function customOutputError(\Throwable $e)
+	{
+		if ($this->env == self::ENV_TYPE['DEV']) {
+			throw $e;
+		} else {
+			$errorPage = Config::get('common','errors')['500'];
+
+			(new Response())
+				->withBody(new Text((new Render($errorPage))->render()))
+				->output();
+
+			exit;
+		}
 	}
 }

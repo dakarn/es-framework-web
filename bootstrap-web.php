@@ -18,7 +18,7 @@ $appKernel->installMiddlewares()->installProviders();
 $env = 'PROD';
 
 if (IS_DEV) {
-	$env = 'DEV';
+	$env = 'PROD';
 }
 
 $application = (new \App\WebApp())
