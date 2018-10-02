@@ -8,9 +8,9 @@
 
 namespace App\Model\ORM;
 
+use Configs\Config;
 use Helper\Redis;
 use Helper\Util;
-use Http\Session\Session;
 use System\Database\DB;
 use System\Database\ORM\ORM;
 use System\Validators\AbstractValidator;
@@ -25,27 +25,29 @@ class User extends ORM
 
 	private $userId;
 
-	private $username;
+	private $login;
 
 	private $password;
 
 	private $email;
+
+	private $isSaved =  false;
 
 	public function getUserId(): string
 	{
 		return $this->userId;
 	}
 
-	public function setUsername(string $username): self
+	public function setLogin(string $login): self
 	{
-		$this->username = $username;
+		$this->login = $login;
 
 		return $this;
 	}
 
-	public function getUsername(): string
+	public function getLogin(): string
 	{
-		return $this->username;
+		return $this->login;
 	}
 
 	public function setEmail(string $email): self
@@ -62,19 +64,17 @@ class User extends ORM
 
 	public function getPassword(): string
 	{
-		return $this->username;
+		return $this->login;
 	}
 
+	/**
+	 * @param string $password
+	 * @return User
+	 * @throws \Exception\FileException
+	 */
 	public function setPassword(string $password): self
 	{
-		$this->password = $password;
-
-		return $this;
-	}
-
-	public function setHashPassword(string $password): self
-	{
-		$this->password = \md5($password);
+		$this->password = \password_hash($password . Config::get('salt', 'passwordUser'), PASSWORD_DEFAULT);
 
 		return $this;
 	}
@@ -133,6 +133,14 @@ class User extends ORM
 
 	}
 
+	/**
+	 * @return bool
+	 */
+	public function isSaved(): bool
+	{
+		return $this->isSaved;
+	}
+
 	public function isGranted(int $role)
 	{
 
@@ -140,10 +148,23 @@ class User extends ORM
 
 	public function addUser()
 	{
-		DB::MySQLAdapter()->insert('
+		$role     = 1;
+
+		$this->isSaved = DB::MySQLAdapter()->insert('
 			INSERT INTO `user`
-			(password, email, login, role, created)
-			VALUES ("sds", "sdsd", "sdsd", 1, "2222-11-11 11:1:11")
+			(
+				password, 
+				email, 
+				login, 
+				role, 
+				created
+			)
+			VALUES (
+				"' . $this->password . '",
+			    "' . $this->email . '", 
+			    "' . $this->login . '", 
+			    ' . $role . ', 
+			    "' . Util::toDbTime() . '")
 		');
 	}
 }

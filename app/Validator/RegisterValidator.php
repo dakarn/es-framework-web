@@ -12,15 +12,6 @@ use System\Validators\AbstractValidator;
 
 class RegisterValidator extends AbstractValidator
 {
-	/**
-	 * @var array
-	 */
-	private $errors = [
-		'Не заполнен логин.',
-		'Не верно заполнен email.',
-		'Не заполнен пароль.',
-		'Не корректный запрос.',
-	];
 
 	/**
 	 * @var bool
@@ -28,24 +19,26 @@ class RegisterValidator extends AbstractValidator
 	public $isUseFlashErrors = true;
 
 	/**
-	 * @return void
+	 * @throws \Exception\FileException
 	 */
 	public function validate(): void
 	{
+		$message = $this->getFormMessage();
+
 		if (!$this->isPost()) {
-			$this->stackErrors['query'] = $this->errors[3];
+			$this->stackErrors['query'] = $message['query'];
 		}
 
 		if (empty($_POST['login'])) {
-			$this->stackErrors['login'] = $this->errors[0];
+			$this->stackErrors['login'] = $message['login'];
 		}
 
 		if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-			$this->stackErrors['email'] = $this->errors[1];
+			$this->stackErrors['email'] = $message['email'];
 		}
 
 		if (empty($_POST['password'])) {
-			$this->stackErrors['password'] = $this->errors[2];
+			$this->stackErrors['password'] = $message['password'];
 		}
 	}
 }

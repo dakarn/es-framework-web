@@ -11,6 +11,7 @@ namespace App\Controller;
 use App\Validator\AuthValidator;
 use App\Validator\RegisterValidator;
 use App\Model\ORM\User;
+use Helper\FlashText;
 use System\Controller\AbstractController;
 use System\Render;
 
@@ -38,7 +39,8 @@ class UserController extends AbstractController
 	}
 
 	/**
-	 * @return \System\Render
+	 * @return Render
+	 * @throws \Exception\FileException
 	 */
 	public function registerAction(): Render
 	{
@@ -47,7 +49,17 @@ class UserController extends AbstractController
 
 		if ($validator->isValid()) {
 			$user = new User();
-			$user->addUser();
+			$user
+				->setPassword($validator->getValueField('password'))
+				->setLogin($validator->getValueField('login'))
+				->setEmail($validator->getValueField('email'))
+				->addUser();
+
+			if ($user->isSaved()) {
+				FlashText::add('success', 'Вы успешно зарегистрированы!');
+			} else {
+				FlashText::add('danger', 'Ошибка при создании пользователя!');
+			}
 		}
 
 		return $this->render('auth/register.html');

@@ -16,8 +16,6 @@ class AuthValidator extends AbstractValidator
 	 * @var array
 	 */
 	private $errors = [
-		'Не заполнен логин или email.',
-		'Не заполнен пароль.',
 		'Не корректный запрос.',
 	];
 
