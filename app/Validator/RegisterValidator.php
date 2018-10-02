@@ -12,7 +12,6 @@ use System\Validators\AbstractValidator;
 
 class RegisterValidator extends AbstractValidator
 {
-
 	/**
 	 * @var bool
 	 */
