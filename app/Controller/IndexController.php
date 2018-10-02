@@ -21,7 +21,7 @@ class IndexController extends AbstractController
 	 */
 	public function indexAction(): Render
 	{
-		print_r(DB::createMySQL()->query('SELECT * FROM teacher.english_teacher LIMIT 10'));
+		print_r(DB::MySQLAdapter()->fetch('SELECT * FROM teacher.english_teacher LIMIT 10'));
 		return $this->render('test.html');
 	}
 
