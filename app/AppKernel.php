@@ -4,7 +4,6 @@ namespace App;
 
 use Http\Middleware\MiddlewareAllowMethod;
 use Http\Middleware\MiddlewareController;
-use Http\Middleware\MiddlewareCSRFToken;
 use Http\Middleware\MiddlewarePreController;
 use Http\Middleware\MiddlewareRouting;
 use System\Registry;

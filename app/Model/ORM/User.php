@@ -94,25 +94,35 @@ class User extends ORM
 
 	/**
 	 * @param AbstractValidator $form
-	 * @return array
+	 * @throws \Exception\FileException
 	 */
-	public function loadUser(AbstractValidator $form): array
+	public function loadUser(AbstractValidator $form)
 	{
 		$user = DB::MySQLAdapter()->fetchRow('
-			SELECT * 
+			SELECT 
+				userId,
+				email,
+				login,
+				password,
+				role,
+				created 
 			FROM user
 			WHERE 
 				(`login` = "' . $form->getLogin() . '" 
 				OR `email` = "' . $form->getEmail() . '")
-				AND `password` = "' . $form->getPassword() . '"
 			LIMIT 1
 		');
 
-		if (!empty($user)) {
-			$this->isLoaded = true;
+		if (empty($user)){
+			$this->isLoaded = false;
+			return;
 		}
 
-		return $user;
+		$authPassword = $form->getPassword() . Config::get('salt', 'passwordUser');
+
+		if (\password_verify($authPassword, $user['password'])) {
+			$this->isLoaded = true;
+		}
 	}
 
 	/**

@@ -11,6 +11,13 @@ return [
 		'allow'      => ['GET'],
 	],
 	[
+		'name'       => 'log-view',
+		'path'       => 'log-view',
+		'controller' => 'Controller:IndexController',
+		'action'     => 'logView',
+		'allow'      => ['GET'],
+	],
+	[
 		'name'       => 'authUser',
 		'path'       => 'auth',
 		'controller' => 'Controller:UserController',

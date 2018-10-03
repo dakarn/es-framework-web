@@ -17,6 +17,8 @@ use Providers\StorageProviders;
 use Http\Response\Response;
 use System\Database\DB;
 use System\EventListener\EventTypes;
+use System\Logger\LoggerElasticSearch;
+use System\Logger\LoggerErrorLog;
 use System\Logger\LoggerStorage;
 use System\Logger\LogLevel;
 use System\Kernel\TypesApp\AbstractApplication;
@@ -70,7 +72,6 @@ final class WebApp extends AbstractApplication
 			$this->handle();
 		} catch(\Throwable $e) {
 			$this->log(LogLevel::ERROR, $e->getTraceAsString());
-			new ExceptionListener($e);
 			$this->outputException($e);
 		}
 	}
@@ -93,8 +94,7 @@ final class WebApp extends AbstractApplication
 	 */
 	public function terminate()
 	{
-		DB::disconnect();
-		LoggerStorage::create()->releaseLog();
+		LoggerElasticSearch::create()->releaseLog();
 	}
 
 	/**

@@ -31,6 +31,7 @@ class UserController extends AbstractController
 			$user->loadUser($validator);
 
 			if ($user->isLoaded()) {
+				echo 'fgfg';
 				$user->authorization();
 			}
 		}

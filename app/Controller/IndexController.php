@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use ElasticSearch\ElasticSearch;
 use QueueManager\QueueModel;
 use QueueManager\QueueManager;
 use QueueManager\Senders\RedisQueueSender;
@@ -21,6 +22,11 @@ class IndexController extends AbstractController
 	public function indexAction(): Render
 	{
 		return $this->render('test.html');
+	}
+
+	public function logViewAction(): Render
+	{
+		return $this->render('log-view.html');
 	}
 
 	/**
