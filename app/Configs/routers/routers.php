@@ -4,6 +4,13 @@ use App\MiddlewareApp\MiddlewareCheckAuth;
 
 return [
 	[
+		'name'       => 'main',
+		'path'       => '',
+		'controller' => 'Controller:IndexController',
+		'action'     => 'index',
+		'allow'      => ['GET'],
+	],
+	[
 		'name'       => 'authUser',
 		'path'       => 'auth',
 		'controller' => 'Controller:UserController',
