@@ -10,8 +10,10 @@ namespace App\Controller;
 
 use App\Validator\AuthValidator;
 use App\Validator\RegisterValidator;
-use App\Model\ORM\User;
+use App\Model\User\User;
 use Helper\FlashText;
+use Helper\JWTokenManager;
+use Http\Session\SessionRedis;
 use System\Controller\AbstractController;
 use System\Render;
 
@@ -27,12 +29,14 @@ class UserController extends AbstractController
 
 		if ($validator->isValid()) {
 
-			$user = new User();
-			$user->loadUser($validator);
+			$user = User::current();
+			$user->loadByEmailOrLogin($validator);
 
 			if ($user->isLoaded()) {
-				echo 'fgfg';
+				FlashText::add('success', 'Вы успешно авторизовались на сайте!');
 				$user->authorization();
+			} else {
+				$validator->setExtraErrorArray($user->getErrors());
 			}
 		}
 
@@ -45,21 +49,19 @@ class UserController extends AbstractController
 	 */
 	public function registerAction(): Render
 	{
-		$validator = new RegisterValidator();
-		$validator->setUseIfPost();
+		$validator = (new RegisterValidator())->setUseIfPost();
 
 		if ($validator->isValid()) {
-			$user = new User();
-			$user
+			$user = User::create()
 				->setPassword($validator->getValueField('password'))
 				->setLogin($validator->getValueField('login'))
 				->setEmail($validator->getValueField('email'))
-				->addUser();
+				->createUser();
 
 			if ($user->isSaved()) {
 				FlashText::add('success', 'Вы успешно зарегистрированы!');
 			} else {
-				FlashText::add('danger', 'Ошибка при создании пользователя!');
+				$validator->setExtraErrorArray($user->getErrors());
 			}
 		}
 

@@ -8,7 +8,13 @@
 <h1>Авторизация</h1>
 <br><br>
 
-<? if (Helper\FlashText::hasByType('danger')) : ?>
+<? if ($user->isAuth()): ?>
+	Вы уже вошли на сайт!
+<? endif; ?>
+
+<br><br><br>
+
+<? if (Helper\FlashText::hasByTypes(['danger', 'success'])) : ?>
 	<? Helper\FlashText::render(); ?>
 <? endif; ?>
 

@@ -8,7 +8,9 @@
 
 namespace App\Validator;
 
+use Helper\Util;
 use System\Validators\AbstractValidator;
+use System\Validators\Validators;
 
 class RegisterValidator extends AbstractValidator
 {
@@ -22,7 +24,7 @@ class RegisterValidator extends AbstractValidator
 	 */
 	public function validate(): void
 	{
-		$message = $this->getFormMessage();
+		$message = Util::getFormMessage(Validators::REGISTER);
 
 		if (!$this->isPost()) {
 			$this->stackErrors['query'] = $message['query'];

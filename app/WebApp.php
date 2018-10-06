@@ -9,22 +9,19 @@
 namespace App;
 
 use Configs\Config;
-use Exception\ExceptionListener\ExceptionListener;
 use Http\Request\ServerRequest;
 use Http\Middleware\StorageMiddleware;
 use Http\Response\Text;
 use Providers\StorageProviders;
 use Http\Response\Response;
-use System\Database\DB;
 use System\EventListener\EventTypes;
 use System\Logger\LoggerElasticSearch;
-use System\Logger\LoggerErrorLog;
-use System\Logger\LoggerStorage;
 use System\Logger\LogLevel;
 use System\Kernel\TypesApp\AbstractApplication;
 use System\Render;
+use System\EventListener\EventManager;
 
-final class WebApp extends AbstractApplication
+final class WebApp extends AbstractApplication implements WebAppInterface
 {
 	/**
 	 * @var Response
@@ -37,17 +34,9 @@ final class WebApp extends AbstractApplication
 	private $request;
 
 	/**
-	 * @param AppKernel $appKernel
-	 * @return AbstractApplication
+	 * @var AppKernel
 	 */
-	public function setAppKernel(AppKernel $appKernel): AbstractApplication
-	{
-		parent::setAppKernel($appKernel);
-		StorageProviders::add($appKernel->getProviders());
-		StorageMiddleware::add($appKernel->getMiddlewares());
-
-		return $this;
-	}
+	private $appKernel;
 
 	/**
 	 * @return WebApp
@@ -87,6 +76,23 @@ final class WebApp extends AbstractApplication
 		$this->response->output();
 
 		$this->eventManager->runEvent(EventTypes::AFTER_OUTPUT_RESPONSE);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function setupClass()
+	{
+		$appEvent = new AppEvent();
+		$this->eventManager = $appEvent->installEvents(new EventManager());
+
+		$this->appKernel = new AppKernel();
+		$this->appKernel
+			->installMiddlewares()
+			->installProviders();
+
+		StorageProviders::add($this->appKernel->getProviders());
+		StorageMiddleware::add($this->appKernel->getMiddlewares());
 	}
 
 	/**

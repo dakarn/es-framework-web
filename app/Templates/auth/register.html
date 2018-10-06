@@ -12,6 +12,10 @@
 	<? Helper\FlashText::render(); ?>
 <? endif; ?>
 
+<? if (Helper\FlashText::hasByType('success')) : ?>
+	<? Helper\FlashText::render(); ?>
+<? endif; ?>
+
 <br>
 <form action="" method="post">
 	<input type="text" name="login" placeholder="Логин*" class="form-control"><br>

@@ -12,10 +12,14 @@ return [
 	],
 	[
 		'name'       => 'log-view',
-		'path'       => 'log-view',
+		'path'       => 'log-view/{level}',
 		'controller' => 'Controller:IndexController',
 		'action'     => 'logView',
 		'allow'      => ['GET'],
+		'regex'      => true,
+		'param'      => [
+			'level'  => '\w+',
+		],
 	],
 	[
 		'name'       => 'authUser',

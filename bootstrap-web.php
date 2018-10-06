@@ -9,12 +9,6 @@ define('APP_KERNEL', PATH_APP . 'AppKernel.php');
 
 include_once __DIR__ . '/vendor/autoload.php';
 
-$event = new App\AppEvent();
-$event = $event->installEvents(new \System\EventListener\EventManager());
-
-$appKernel = new \App\AppKernel();
-$appKernel->installMiddlewares()->installProviders();
-
 $env = 'PROD';
 
 if (IS_DEV) {
@@ -23,8 +17,6 @@ if (IS_DEV) {
 
 $application = (new \App\WebApp())
 	->setEnvironment($env)
-	->setAppEvent($event)
-	->setAppKernel($appKernel)
 	->setApplicationType('Web');
 
 set_exception_handler(function($e) use($application) {
