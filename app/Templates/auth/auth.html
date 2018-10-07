@@ -19,10 +19,13 @@
 <? endif; ?>
 
 <br>
-<form action="" method="post">
+<form name="login" action="" method="post">
 	<input type="text" name="login" placeholder="Логин или E-mail" class="form-control"><br>
 	<input type="password" name="password" placeholder="Пароль" class="form-control"><br>
-	<input type="submit" class="btn btn-success" value="Войти"><br>
+	<input type="hidden" name="clientId" value="es-framework.dev.ru" class="form-control"><br>
+	<input type="hidden" name="clientSecret" value="es-framework.dev.ru" class="form-control"><br>
+	<input type="hidden" name="site" value="es-framework.dev.ru" class="form-control"><br>
+	<input type="submit" onClick="sendToLogin(); return false;" class="btn btn-success" value="Войти"><br>
 	<input type="hidden" name="CSRFToken" value="<?=Helper\CSRFTokenManager::create()->returnForForm()?>">
 </form>
 

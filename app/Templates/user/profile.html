@@ -1,0 +1,25 @@
+<?php
+
+ $title = '';
+ include(TEMPLATE . '/header.html');
+
+?>
+
+<h1>Профиль пользвателя</h1>
+<br><br>
+
+<br><br>
+
+<? if (Helper\FlashText::hasByTypes(['danger', 'success'])) : ?>
+	<? Helper\FlashText::render(); ?>
+<? endif; ?>
+
+<b>Ваш логин: </b><?= $user->getLogin()?><br>
+<b>Ваша почта: </b><?= $user->getEmail()?><br>
+<b>Дата регистрации: </b><?= $user->getCreated()?><br>
+
+<br>
+
+<?php
+ include(TEMPLATE . '/footer.html');
+?>

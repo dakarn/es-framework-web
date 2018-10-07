@@ -7,6 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="<?= URL ?>public/js/script.js"></script>
 	<script src="<?= URL ?>public/js/audio.js"></script>
+	<script src="<?= URL ?>public/js/login.js"></script>
 	<link rel="stylesheet" href="<?= URL ?>public/css/style.css">
 	<link rel="icon" type="image/x-icon" href="<?= URL ?>public/picture/favicon.png" />
 </head>
@@ -20,6 +21,12 @@
 
 		<a class=menu-item href="<?= URL?>auth">Войти</a>
 		<a class=menu-item href="<?= URL?>register">Регистрация</a>
+
+		<? if ($user->isAuth()) : ?>
+			<a class=menu-item href="<?= URL?>profile">Личный кабинет</a>
+			<a class=menu-item href="<?= URL?>logout">Выйти</a>
+		<? endif; ?>
+
 		<br><br>
 
 		<a class=menu-item href="<?= URL?>add-word">Добавить слово</a>

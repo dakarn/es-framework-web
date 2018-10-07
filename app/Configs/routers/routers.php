@@ -1,6 +1,7 @@
 <?php
 
 use App\MiddlewareApp\MiddlewareCheckAuth;
+use Models\User\User;
 
 return [
 	[
@@ -11,7 +12,14 @@ return [
 		'allow'      => ['GET'],
 	],
 	[
-		'name'       => 'log-view',
+		'name'       => 'checkAuth',
+		'path'       => 'check-auth',
+		'controller' => 'Controller:UserController',
+		'action'     => 'checkAuth',
+		'allow'      => ['GET'],
+	],
+	[
+		'name'       => 'logUiew',
 		'path'       => 'log-view/{level}',
 		'controller' => 'Controller:IndexController',
 		'action'     => 'logView',
@@ -27,6 +35,14 @@ return [
 		'controller' => 'Controller:UserController',
 		'action'     => 'auth',
 		'allow'      => ['GET', 'POST'],
+	],
+	[
+		'name'       => 'profileUser',
+		'path'       => 'profile',
+		'controller' => 'Controller:UserController',
+		'action'     => 'profile',
+		'access'    => User::ROLE_USER,
+		'allow'      => ['GET'],
 	],
 	[
 		'name'       => 'logout',

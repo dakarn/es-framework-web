@@ -10,15 +10,18 @@ namespace App\Controller;
 
 use App\Validator\AuthValidator;
 use App\Validator\RegisterValidator;
-use App\Model\User\User;
+use Models\User\User;
 use Helper\FlashText;
-use Helper\JWTokenManager;
-use Http\Session\SessionRedis;
 use System\Controller\AbstractController;
 use System\Render;
 
 class UserController extends AbstractController
 {
+	public function checkAuthAction()
+	{
+		echo User::current()->isAuth();
+	}
+
 	/**
 	 * @return \System\Render
 	 * @throws \Exception
@@ -33,8 +36,11 @@ class UserController extends AbstractController
 			$user->loadByEmailOrLogin($validator);
 
 			if ($user->isLoaded()) {
-				FlashText::add('success', 'Вы успешно авторизовались на сайте!');
-				$user->authorization();
+				$user->authentication();
+
+				if ($user->isAuth()) {
+					$this->redirectToRoute('profileUser');
+				}
 			} else {
 				$validator->setExtraErrorArray($user->getErrors());
 			}
@@ -68,8 +74,18 @@ class UserController extends AbstractController
 		return $this->render('auth/register.html');
 	}
 
+	public function profileAction(): Render
+	{
+		if (!User::current()->isAuth()) {
+			$this->redirectToRoute('authUser');
+		}
+
+		return $this->render('user/profile.html');
+	}
+
 	public function logoutAction()
 	{
+		User::current()->logout();
 		$this->redirect(URL);
 	}
 }
