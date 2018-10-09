@@ -19,12 +19,12 @@
 
 	<div class="menu-list">
 
-		<a class=menu-item href="<?= URL?>auth">Войти</a>
-		<a class=menu-item href="<?= URL?>register">Регистрация</a>
-
 		<? if ($user->isAuth()) : ?>
 			<a class=menu-item href="<?= URL?>profile">Личный кабинет</a>
-			<a class=menu-item href="<?= URL?>logout">Выйти</a>
+			<a class=menu-item href="" onclick="return logout()">Выйти</a>
+		<? else: ?>
+			<a class=menu-item href="<?= URL?>auth">Войти</a>
+			<a class=menu-item href="<?= URL?>register">Регистрация</a>
 		<? endif; ?>
 
 		<br><br>

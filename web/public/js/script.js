@@ -1,99 +1,29 @@
-﻿var hide = false;
+﻿function getCookie(name) {
+	var matches = document.cookie.match(new RegExp(
+		"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+	));
+	return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 
-function filterText(name, begin, end, comma)
+function deleteCookie(name)
 {
-	var text = $("textarea[name='" + name + "']").val(), list = text.split('\n');
-	$("textarea[name='" + name + "']").val('');
+	document.cookie = name + '=; path=/; expires=Thu, 01 Jan 1999 00:00:01 GMT;';
+}
 
-	for (var k in list) {
+function now()
+{
+	return new Date().getTime()/1000;
+}
 
-		var res = '';
-		var i   = 0;
+window.addEventListener('load', function () {
 
-		list[k] = list[k].replace(/\[(.*)\]/g, '');
+	let refreshToken  = getCookie('RFRT');
+	let JWToken       = getCookie('JWT');
+	let expires       = getCookie('EXP');
 
-		while (list[k].length > i) {
-
-			if (begin < list[k][i].charCodeAt(0) && list[k][i].charCodeAt(0) < end) {
-				res += list[k][i].trim();
-			}
-
-			if (comma == 'comma' && list[k][i] == ',' || list[k][i] == ' ') res += list[k][i];
-
-			i++;
+	if (expires && refreshToken && JWToken) {
+		if (expires < now()) {
+			sendToRefreshToken();
 		}
-
-		$("textarea[name='" + name + "']").val($("textarea[name='" + name + "']").val() + res.trim() + (k < list.length - 1 ? '\n' : '') + '');
 	}
-}
-
-
-function filter()
-{
-	filterText('AddWord[text]', 96, 123, 0);
-	filterText('AddWord[translate]', 1020, 1113, 'comma');
-
-	return false;
-}
-
-
-$("#several").click(function(e)
-{
-	if ($(this).attr("data-fun") == 'several') {
-
-		$(this).html("Добавить по одному");
-		$(this).attr("data-fun", "one");
-
-		var newbuff = $("#contentSev").html();
-
-		$("#contentSev").html($("#buffer").html());
-		$("#buffer").html(newbuff);
-
-		$(".several").val("several");
-
-	} else if ($(this).attr("data-fun") == 'one') {
-
-		$(this).html("Добавить несколько слов сразу");
-		$(this).attr("data-fun", "several");
-
-		var newbuff = $("#contentSev").html();
-
-		$("#contentSev").html($("#buffer").html());
-		$("#buffer").html(newbuff);
-
-		$(".several").val("one");
-
-	}
-
-	e.preventDefault();
 });
-
-
-
-function showVanish()
-{
-  if (!hide) {
-
-	  hide = true;
-	  $('.list').html('');
-
-	  var ind = 0;
-	  var int = setInterval(function () {
-
-		  if (ind >= list.length) ind = 0;
-
-		  $('.list').html('' + ( ind + 1 ) + '. <font color=green><b>' + list[ind] + '</b></font>');
-
-		  ind++;
-
-	  }, 2000);
-
-  } else {
-
-	  hide = false;
-	  $('.list').html('');
-
-  }
-
-  return false;
-}

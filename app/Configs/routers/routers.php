@@ -19,7 +19,7 @@ return [
 		'allow'      => ['GET'],
 	],
 	[
-		'name'       => 'logUiew',
+		'name'       => 'logView',
 		'path'       => 'log-view/{level}',
 		'controller' => 'Controller:IndexController',
 		'action'     => 'logView',
@@ -34,6 +34,7 @@ return [
 		'path'       => 'auth',
 		'controller' => 'Controller:UserController',
 		'action'     => 'auth',
+		'middleware' => [MiddlewareCheckAuth::class],
 		'allow'      => ['GET', 'POST'],
 	],
 	[
@@ -49,12 +50,14 @@ return [
 		'path'       => 'logout',
 		'controller' => 'Controller:UserController',
 		'action'     => 'logout',
+		'middleware' => [MiddlewareCheckAuth::class],
 		'allow'      => ['GET'],
 	],
 	[
 		'name'       => 'registerUser',
 		'path'       => 'register',
 		'controller' => 'Controller:UserController',
+		'middleware' => [MiddlewareCheckAuth::class],
 		'action'     => 'register',
 		'allow'      => ['GET', 'POST'],
 	],

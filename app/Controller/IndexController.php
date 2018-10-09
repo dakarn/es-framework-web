@@ -2,14 +2,13 @@
 
 namespace App\Controller;
 
-use ElasticSearch\ElasticSearch;
 use QueueManager\QueueModel;
 use QueueManager\QueueManager;
 use QueueManager\Senders\RedisQueueSender;
 use System\Controller\AbstractController;
 use App\Model\Dictionary\DictionaryRepository;
 use App\Validator\SearchWordValidator;
-use System\Database\DBManager\Mapping\ObjectMapper;
+use System\Database\ORM\Mapping\ObjectMapper;
 use System\Render;
 use Widget\WidgetFactory;
 use App\Model\Test\ModelTest;
@@ -18,6 +17,7 @@ class IndexController extends AbstractController
 {
 	/**
 	 * @return Render
+	 * @throws \Exception\FileException
 	 */
 	public function indexAction(): Render
 	{

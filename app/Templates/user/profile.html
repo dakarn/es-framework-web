@@ -1,6 +1,6 @@
 <?php
 
- $title = '';
+ $title = 'Главная страница ElasticSearch';
  include(TEMPLATE . '/header.html');
 
 ?>
@@ -18,7 +18,11 @@
 <b>Ваша почта: </b><?= $user->getEmail()?><br>
 <b>Дата регистрации: </b><?= $user->getCreated()?><br>
 
-<br>
+<br><br>
+
+<a href="" onclick="return logoutAllGadget()">Выйти со всех устройств</a>
+
+<br><br>
 
 <?php
  include(TEMPLATE . '/footer.html');

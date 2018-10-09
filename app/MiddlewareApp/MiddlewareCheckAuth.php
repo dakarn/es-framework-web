@@ -12,15 +12,17 @@ use Http\Request\ServerRequest;
 use Http\Middleware\MiddlewareInterface;
 use Http\Middleware\RequestHandler;
 use Http\Response\Response;
+use Models\User\User;
 use System\Router\Routing;
 
 class MiddlewareCheckAuth implements MiddlewareInterface
 {
-    /**
-     * @param ServerRequest $request
-     * @param RequestHandler $handler
-     * @return \Http\Response\Response
-     */
+	/**
+	 * @param ServerRequest $request
+	 * @param RequestHandler $handler
+	 * @return Response|mixed
+	 * @throws \Exception\FileException
+	 */
 	public function process(ServerRequest $request, RequestHandler $handler)
 	{
 		$routersName = [
@@ -28,17 +30,18 @@ class MiddlewareCheckAuth implements MiddlewareInterface
 			'logout',
 			'registerUser',
 		];
+
 		$isBug  = false;
 		$router = Routing::getFoundRouter();
 
 		switch (true) {
-			case $router->getName() === $routersName[0] && true:
+			case $router->getName() === $routersName[0] && User::current()->isAuth():
 				$isBug = true;
 				break;
-			case $router->getName() === $routersName[2] && true:
+			case $router->getName() === $routersName[2] && User::current()->isAuth():
 				$isBug = true;
 				break;
-			case $router->getName() === $routersName[1] && false:
+			case $router->getName() === $routersName[1] && !User::current()->isAuth():
 				$isBug = true;
 				break;
 		}
