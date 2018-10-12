@@ -4,6 +4,7 @@ namespace App;
 
 use Http\Middleware\MiddlewareAllowMethod;
 use Http\Middleware\MiddlewareController;
+use Http\Middleware\MiddlewareGrantAccess;
 use Http\Middleware\MiddlewarePreController;
 use Http\Middleware\MiddlewareRouting;
 use System\Registry;
@@ -97,7 +98,7 @@ final class AppKernel
     {
         $this->middlewares[] = [
             'autoStart' => false,
-            'class'     => MiddlewareApp\MiddlewareCheckingBot::class,
+            'class'     => MiddlewareGrantAccess::class,
         ];
 
         $this->middlewares[] = [

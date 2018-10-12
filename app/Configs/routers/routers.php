@@ -1,6 +1,7 @@
 <?php
 
 use App\MiddlewareApp\MiddlewareCheckAuth;
+use Http\Middleware\MiddlewareGrantAccess;
 use Models\User\User;
 
 return [
@@ -57,8 +58,9 @@ return [
 		'name'       => 'registerUser',
 		'path'       => 'register',
 		'controller' => 'Controller:UserController',
-		'middleware' => [MiddlewareCheckAuth::class],
+		'middleware' => [MiddlewareGrantAccess::class, MiddlewareCheckAuth::class],
 		'action'     => 'register',
+		'access'     => User::ROLE_USER,
 		'allow'      => ['GET', 'POST'],
 	],
 	[

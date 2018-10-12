@@ -3,7 +3,7 @@ function sendToLogin()
 	let form = document.forms.login.elements;
 
 	$.ajax({
-		url: "http://auth.es-framework.dev.ru/oauth/access-token",
+		url: "http://auth." + location.host + "/oauth/access-token",
 		type: 'post',
 		data: "login=" + form[0].value + "&password=" + form[1].value + "&clientId=" + location.host + "&clientSecret=" + location.host + "&site=" + location.host,
 		success: function (data) {
@@ -30,7 +30,7 @@ function logout()
 	let accessToken = getCookie('JWT');
 
 	$.ajax({
-		url: "http://auth.es-framework.dev.ru/oauth/logout",
+		url: "http://auth." + location.host + "/oauth/logout",
 		type: 'post',
 		data: "accessToken=" + accessToken,
 		success: function (data) {
@@ -53,7 +53,7 @@ function logoutAllGadget()
 	let accessToken = getCookie('JWT');
 
 	$.ajax({
-		url: "http://auth.es-framework.dev.ru/oauth/logout-all",
+		url: "http://auth." + location.host + "/oauth/logout-all",
 		type: 'post',
 		data: "accessToken=" + accessToken,
 		success: function (data) {
@@ -72,7 +72,7 @@ function sendToRefreshToken()
 	let refreshToken  = getCookie('RFRT');
 
 	$.ajax({
-		url: "http://auth.es-framework.dev.ru/oauth/refresh-token",
+		url: "http://auth." + location.host + "/oauth/refresh-token",
 		type: 'post',
 		data: "refreshToken=" + refreshToken + "&clientId=" + location.host + "&clientSecret=" + location.host + "&site=" + location.host,
 		success: function (data) {
