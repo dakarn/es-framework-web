@@ -74,6 +74,12 @@ class UserController extends AbstractController
 		return $this->render('auth/register.html');
 	}
 
+	/**
+	 * @return Render
+	 * @throws \Exception\FileException
+	 * @throws \Exception\KernelException
+	 * @throws \Exception\RoutingException
+	 */
 	public function profileAction(): Render
 	{
 		if (!User::current()->isAuth()) {
@@ -83,6 +89,9 @@ class UserController extends AbstractController
 		return $this->render('user/profile.html');
 	}
 
+	/**
+	 * @throws \Exception\FileException
+	 */
 	public function logoutAction()
 	{
 		User::current()->logout();

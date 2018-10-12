@@ -73,7 +73,7 @@ class Pagination
 			$_GET['page'] = 1;
 		}
 
-		$this->page = abs($_GET['page']);
+		$this->page = \abs($_GET['page']);
 
 		if (empty($_GET['page'])) {
 			$this->page = 1;
@@ -81,7 +81,7 @@ class Pagination
 		if (!isset($_GET['page'])) {
 			$this->page = 1;
 		}
-		if (!empty($_GET['page']) && !is_numeric($_GET['page'])) {
+		if (!empty($_GET['page']) && !\is_numeric($_GET['page'])) {
 			$this->page = 1;
 		}
 
@@ -100,18 +100,12 @@ class Pagination
 
 	/**
 	 * @return array
+	 * @throws \Exception
 	 */
 	public function setData(): array
 	{
 		$offset = $this->count_list * ($this->page - 1);
-		$data = [];
-
-		$result = DB::create()->query('SELECT pageId, title, body, keywords, modified 
-		FROM pet__page ORDER BY modified DESC LIMIT ' . $offset . ', ' . $this->count_list);
-
-		while ($row = $result->fetch_object()) {
-			$data[] = $row;
-		}
+		$data = DB::MySQLAdapter()->fetch('');
 
 		return $data;
 	}

@@ -28,6 +28,7 @@ class ElasticController extends AbstractController
 
 	/**
 	 * @return Render
+	 * @throws \Exception\FileException
 	 */
 	public function removeIndexAction(): Render
 	{
@@ -40,6 +41,7 @@ class ElasticController extends AbstractController
 
 	/**
 	 * @return Render
+	 * @throws \Exception\FileException
 	 */
 	public function indexerAction(): Render
 	{
@@ -50,8 +52,8 @@ class ElasticController extends AbstractController
 		/** @var Dictionary $item */
 		foreach ($result as $item) {
 
-			$data .= json_encode(['index' => ['_index' => 'teacher', '_type' => 'dictionary', '_id' => $item->getId()]]) . '\n';
-			$data .= json_encode([
+			$data .= \json_encode(['index' => ['_index' => 'teacher', '_type' => 'dictionary', '_id' => $item->getId()]]) . '\n';
+			$data .= \json_encode([
 				'text'      => $item->getText(),
 				'translate' => $item->getTranslate(),
 				'type'      => $item->getType(),
@@ -71,6 +73,7 @@ class ElasticController extends AbstractController
 
 	/**
 	 * @return Render
+	 * @throws \Exception\FileException
 	 */
 	public function enterCommandAction(): Render
 	{

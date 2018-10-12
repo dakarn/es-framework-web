@@ -34,7 +34,7 @@ class RegisterValidator extends AbstractValidator
 			$this->stackErrors['login'] = $message['login'];
 		}
 
-		if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+		if (!\filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->stackErrors['email'] = $message['email'];
 		}
 

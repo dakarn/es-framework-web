@@ -39,7 +39,7 @@ class IndexController extends AbstractController
 	{
 	    $dataVideoFile = [
 	        'file'        => 'C:/Users/v.konovalov/Downloads/ffmpeg/video.mp4',
-            'newFilename' => 'video-screen-' . time() . '.jpeg',
+            'newFilename' => 'video-screen-' . \time() . '.jpeg',
             'newPath'     => 'C:/Users/v.konovalov/Downloads/ffmpeg/',
         ];
 
@@ -86,18 +86,19 @@ class IndexController extends AbstractController
 
 	/**
 	 * @return Render
+	 * @throws \Exception\FileException
 	 */
 	public function searchWordAction(): Render
 	{
 		$send = (new QueueModel())
-			->setData(time())
+			->setData(\time())
 			->setName('testQueue');
 
 		/** @var RedisQueueSender $manager */
 		$manager = QueueManager::create()
 			->setSender(new RedisQueueSender())
 			->sender($send)
-            ->setDataForSend((string) time());
+            ->setDataForSend((string) \time());
 
 		for ($i = 0; $i < 5000; $i++) {
             $manager->send();

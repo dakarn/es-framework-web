@@ -1,6 +1,5 @@
 <?php
-session_start();
 
-define('IS_WEB', true);
+\define('IS_WEB', true);
 
 include '../bootstrap-web.php';
