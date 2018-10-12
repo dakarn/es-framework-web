@@ -1,5 +1,6 @@
 <?php
 
+
 \define('PSR_4', true);
 \define('IS_DEV', \is_file(__DIR__ . '/dev.php'));
 \define('PATH_APP', __DIR__ . '/app/');
