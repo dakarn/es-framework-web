@@ -26,6 +26,8 @@ class RegisterValidator extends AbstractValidator
 	{
 		$message = Util::getFormMessage(Validators::REGISTER);
 
+		$this->validateCSRFToken();
+
 		if (!$this->isPost()) {
 			$this->stackErrors['query'] = $message['query'];
 		}

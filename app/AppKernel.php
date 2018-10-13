@@ -3,6 +3,7 @@
 namespace App;
 
 use Http\Middleware\MiddlewareAllowMethod;
+use Http\Middleware\MiddlewareAnonymousToken;
 use Http\Middleware\MiddlewareController;
 use Http\Middleware\MiddlewareGrantAccess;
 use Http\Middleware\MiddlewarePreController;
@@ -81,6 +82,11 @@ final class AppKernel
         $this->middlewares[] = [
             'autoStart' => true,
             'class'     => MiddlewarePreController::class,
+        ];
+
+        $this->middlewares[] = [
+            'autoStart' => true,
+            'class'     => MiddlewareAnonymousToken::class,
         ];
 
         $this->middlewares[] = [

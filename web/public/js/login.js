@@ -5,7 +5,7 @@ function sendToLogin()
 	$.ajax({
 		url: "http://auth." + location.host + "/oauth/access-token",
 		type: 'post',
-		data: "login=" + form[0].value + "&password=" + form[1].value + "&clientId=" + location.host + "&clientSecret=" + location.host + "&site=" + location.host,
+		data: "CSRFToken=" + form[3].value  + "&login=" + form[0].value + "&password=" + form[1].value + "&clientId=" + location.host + "&clientSecret=" + location.host + "&site=" + location.host,
 		success: function (data) {
 
 			if (data.success) {

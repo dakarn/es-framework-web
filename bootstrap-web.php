@@ -13,6 +13,7 @@ $env = 'PROD';
 
 if (IS_DEV) {
 	$env = 'DEV';
+	include_once 'dev.php';
 }
 
 $application = (new \App\WebApp())
