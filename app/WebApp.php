@@ -109,7 +109,7 @@ final class WebApp extends AbstractApplication implements WebAppInterface
 	 */
 	public function customOutputError(\Throwable $e)
 	{
-		if ($this->env == self::ENV_TYPE['DEV']) {
+		if ($this->env == self::ENV_DEV) {
 			throw $e;
 		} else {
 			$errorPage = Config::get('common','errors')['500'];

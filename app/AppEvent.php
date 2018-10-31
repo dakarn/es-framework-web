@@ -6,7 +6,7 @@ use App\Event\AfterResponse;
 use System\EventListener\EventManager;
 use System\EventListener\EventTypes;
 use App\Event\BeforeControllerEvent;
-use System\Registry;
+use System\ES;
 
 final class AppEvent
 {
@@ -19,7 +19,7 @@ final class AppEvent
 		$eventManager->addEventListener(EventTypes::BEFORE_CONTROLLER, BeforeControllerEvent::class);
 		$eventManager->addEventListener(EventTypes::AFTER_OUTPUT_RESPONSE, AfterResponse::class);
 
-		Registry::set(Registry::APP_EVENT, $eventManager);
+		ES::set(ES::APP_EVENT, $eventManager);
 		return $eventManager;
 	}
 }

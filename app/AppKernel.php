@@ -8,7 +8,7 @@ use Http\Middleware\MiddlewareController;
 use Http\Middleware\MiddlewareGrantAccess;
 use Http\Middleware\MiddlewarePreController;
 use Http\Middleware\MiddlewareRouting;
-use System\Registry;
+use System\ES;
 
 final class AppKernel
 {
@@ -27,7 +27,7 @@ final class AppKernel
 	 */
 	public function __construct()
 	{
-		Registry::set(Registry::APP_KERNEL, $this);
+		ES::set(ES::APP_KERNEL, $this);
 	}
 
 	/**
