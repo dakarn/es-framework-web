@@ -22,11 +22,6 @@ class IndexController extends AbstractController
 	 */
 	public function indexAction(): Render
 	{
-		$rr = DB::MySQLAdapter()
-			->prepare('SELECT * FROM user WHERE userId=?', DB::READ)
-			->bindParams('i', [21]);
-		$rr->execute();
-
 		return $this->render('test.html');
 	}
 
