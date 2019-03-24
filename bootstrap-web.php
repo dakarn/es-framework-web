@@ -1,7 +1,7 @@
 <?php
 
 \define('PSR_4', true);
-\define('IS_DEV', \is_file(__DIR__ . '/dev.php'));
+\define('IS_DEV', \is_file(__DIR__ . '/dev.php') || \getenv('ENV_DEV'));
 \define('PATH_APP', __DIR__ . '/app/');
 \define('TEMPLATE', \PATH_APP . 'Templates');
 \define('APP_EVENT', \PATH_APP . 'AppEvent.php');

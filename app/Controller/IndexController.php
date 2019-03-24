@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use ElasticSearchNew\ElasticQuery;
+use ElasticSearchNew\ElasticSearchNew;
 use Configs\Config;
 use QueueManager\QueueModel;
 use QueueManager\QueueManager;
@@ -9,7 +11,6 @@ use QueueManager\Senders\RedisQueueSender;
 use System\Controller\AbstractController;
 use App\Model\Dictionary\DictionaryRepository;
 use App\Validator\SearchWordValidator;
-use System\Database\DB;
 use System\Database\ORM\Mapping\ObjectMapper;
 use System\Render;
 use Widget\WidgetFactory;
@@ -23,10 +24,15 @@ class IndexController extends AbstractController
 	 */
 	public function indexAction(): Render
 	{
-		$rr = DB::MySQLAdapter()
-			->prepare('SELECT * FROM user WHERE userId=?', DB::READ)
-			->bindParams('i', [21]);
-		$rr->execute();
+	    $es = ElasticSearchNew::create()
+            ->insert()
+            ->setIndex('twitter')
+            ->setType('_doc')
+            ->setQuery([
+                'email' => 'Test'
+            ]);
+
+	    print_r(ElasticQuery::create()->execute($es));
 
 		return $this->render('test.html');
 	}
