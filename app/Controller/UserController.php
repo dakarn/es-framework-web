@@ -32,8 +32,7 @@ class UserController extends AbstractController
 
 		if ($validator->isValid()) {
 
-			$user = User::current();
-			$user->loadByEmailOrLogin($validator);
+			$user = User::loadByEmailOrLogin($validator);
 
 			if ($user->isLoaded()) {
 				$user->authentication();

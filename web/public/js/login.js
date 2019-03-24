@@ -8,16 +8,23 @@ function sendToLogin()
 		data: "CSRFToken=" + form[3].value  + "&login=" + form[0].value + "&password=" + form[1].value + "&clientId=" + location.host + "&clientSecret=" + location.host + "&site=" + location.host,
 		success: function (data) {
 
+			console.log(data);
 			if (data.success) {
 				let date = new Date(new Date().getTime() + 6000000);
 
 				deleteCookie('JWT');
 
 				document.cookie = 'JWT=' + data.data.accessToken + '; domain=.' + location.host + '; path=/; expires=' + date.toUTCString();
-				document.cookie = 'RFRT=' + data.data.refreshToken + '; domain=.' + location.host + '; path=/; expires=' + date.toUTCString();
-				document.cookie = 'EXP=' + data.data.expires_in + '; domain=.' + location.host + '; path=/; expires=' + date.toUTCString();
 
-				location.href = 'http://' + location.host;
+				$.ajax({
+					url: "http://api." + location.host + "/v001/session/start",
+					type: 'post',
+					data: "cookie=" + data.data.accessToken,
+					success: function () {
+						location.href = 'http://' + location.host;
+					}
+				});
+
 			} else {
 				alert('Не удалось получит токены!');
 			}
@@ -37,10 +44,15 @@ function logout()
 
 			if (data.success) {
 				deleteCookie('JWT');
-				deleteCookie('RFRT');
-				deleteCookie('EXP');
 
-				location.href = 'http://' + location.host;
+				$.ajax({
+					url: "http://api." + location.host + "/v001/session/destroy",
+					type: 'post',
+					data: "cookie=" + data.data.accessToken,
+					success: function () {
+						location.href = 'http://' + location.host;
+					}
+				});
 			}
 		}
 	});
@@ -83,8 +95,6 @@ function sendToRefreshToken()
 				deleteCookie('JWT');
 
 				document.cookie = 'JWT=' + data.data.accessToken + '; domain=.' + location.host + '; path=/; expires=' + date.toUTCString();
-				document.cookie = 'RFRT=' + data.data.refreshToken + '; domain=.' + location.host + '; path=/; expires=' + date.toUTCString();
-				document.cookie = 'EXP=' + data.data.expires_in + '; domain=.' + location.host + '; path=/; expires=' + date.toUTCString();
 
 				location.reload();
 			}

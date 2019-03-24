@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Configs\Config;
 use QueueManager\QueueModel;
 use QueueManager\QueueManager;
 use QueueManager\Senders\RedisQueueSender;

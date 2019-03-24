@@ -12,7 +12,7 @@ include_once __DIR__ . '/vendor/autoload.php';
 $env = \App\WebApp::ENV_PROD;
 
 if (\IS_DEV) {
-	$env = \App\WebApp::ENV_PROD;
+	$env = \App\WebApp::ENV_DEV;
 	include_once 'dev.php';
 }
 
