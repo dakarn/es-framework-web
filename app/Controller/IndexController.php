@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use ElasticSearchNew\ElasticQuery;
-use ElasticSearchNew\ElasticSearchNew;
-use Configs\Config;
+use ObjectMapper\Test;
 use QueueManager\QueueModel;
 use QueueManager\QueueManager;
 use QueueManager\Senders\RedisQueueSender;
@@ -21,9 +19,12 @@ class IndexController extends AbstractController
 	/**
 	 * @return Render
 	 * @throws \Exception\FileException
+	 * @throws \Exception\ObjectException
 	 */
 	public function indexAction(): Render
 	{
+		print_r(ObjectMapper::create()->arrayToObject(['login' => 'sdsd', 'data' => '{"name": "Test"}'], Test::class));
+
 		return $this->render('test.html');
 	}
 
