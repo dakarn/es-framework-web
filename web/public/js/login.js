@@ -8,11 +8,8 @@ function sendToLogin()
 		data: "CSRFToken=" + form[3].value  + "&login=" + form[0].value + "&password=" + form[1].value + "&clientId=" + location.host + "&clientSecret=" + location.host + "&site=" + location.host,
 		success: function (data) {
 
-			console.log(data);
 			if (data.success) {
-				let date = new Date(new Date().getTime() + 6000000);
-
-				deleteCookie('JWT');
+				let date = new Date(new Date().getTime() + ((86400000 * 365) * 100));
 
 				document.cookie = 'JWT=' + data.data.accessToken + '; domain=.' + location.host + '; path=/; expires=' + date.toUTCString();
 

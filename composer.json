@@ -1,8 +1,8 @@
 {
   "repositories": [
     {
-      "type": "git",
-      "url":  "https://github.com/dakarn/es-framework-kernel"
+      "type": "path",
+      "url":  "C:\\apache\\es-framework-dev\\es-framework-kernel"
     }
   ],
   "autoload": {
@@ -16,7 +16,7 @@
     }
   },
   "require": {
-    "php": ">=7.1",
-    "es-framework-kernel": "dev-master"
+    "php": "7.1.2RC1",
+    "es-framework-kernel": "1.0"
   }
 }

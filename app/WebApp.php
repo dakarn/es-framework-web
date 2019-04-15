@@ -15,6 +15,8 @@ use Http\Response\Text;
 use Providers\StorageProviders;
 use Http\Response\Response;
 use System\EventListener\EventTypes;
+use System\Logger\Logger;
+use System\Logger\LoggerAware;
 use System\Logger\LoggerElasticSearch;
 use System\Logger\LogLevel;
 use System\Kernel\TypesApp\AbstractApplication;
@@ -96,11 +98,11 @@ final class WebApp extends AbstractApplication implements WebAppInterface
 	}
 
 	/**
-	 * @return void
+	 *
 	 */
 	public function terminate()
 	{
-		LoggerElasticSearch::create()->releaseLog();
+		LoggerAware::setLogger(Logger::class)->getLoggerStorage()->releaseLogs();
 	}
 
 	/**

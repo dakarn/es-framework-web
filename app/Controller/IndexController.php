@@ -11,10 +11,10 @@ use QueueManager\Senders\RedisQueueSender;
 use System\Controller\AbstractController;
 use App\Model\Dictionary\DictionaryRepository;
 use App\Validator\SearchWordValidator;
-use System\Database\ORM\Mapping\ObjectMapper;
 use System\Render;
 use Widget\WidgetFactory;
 use App\Model\Test\ModelTest;
+use ObjectMapper\ObjectMapper;
 
 class IndexController extends AbstractController
 {
@@ -24,16 +24,6 @@ class IndexController extends AbstractController
 	 */
 	public function indexAction(): Render
 	{
-	    $es = ElasticSearchNew::create()
-            ->insert()
-            ->setIndex('twitter')
-            ->setType('_doc')
-            ->setQuery([
-                'email' => 'Test'
-            ]);
-
-	    print_r(ElasticQuery::create()->execute($es));
-
 		return $this->render('test.html');
 	}
 
