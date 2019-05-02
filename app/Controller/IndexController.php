@@ -2,13 +2,15 @@
 
 namespace App\Controller;
 
-use ObjectMapper\Test;
+use Kafka\ConfigureConnect;
+use Kafka\Kafka;
 use QueueManager\QueueModel;
 use QueueManager\QueueManager;
 use QueueManager\Senders\RedisQueueSender;
 use System\Controller\AbstractController;
 use App\Model\Dictionary\DictionaryRepository;
 use App\Validator\SearchWordValidator;
+use System\Logger\LogLevel;
 use System\Render;
 use Widget\WidgetFactory;
 use App\Model\Test\ModelTest;
@@ -19,11 +21,10 @@ class IndexController extends AbstractController
 	/**
 	 * @return Render
 	 * @throws \Exception\FileException
-	 * @throws \Exception\ObjectException
 	 */
 	public function indexAction(): Render
 	{
-		print_r(ObjectMapper::create()->arrayToObject(['login' => 'sdsd', 'data' => '{"name": "Test"}'], Test::class));
+		$this->log(LogLevel::INFO, 'Test Kafka Queue for log');
 
 		return $this->render('test.html');
 	}

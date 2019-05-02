@@ -17,7 +17,6 @@ use Http\Response\Response;
 use System\EventListener\EventTypes;
 use System\Logger\Logger;
 use System\Logger\LoggerAware;
-use System\Logger\LoggerElasticSearch;
 use System\Logger\LogLevel;
 use System\Kernel\TypesApp\AbstractApplication;
 use System\Render;
