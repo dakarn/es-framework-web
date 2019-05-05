@@ -97,13 +97,13 @@ class IndexController extends AbstractController
 	{
 		$send = (new QueueModel())
 			->setData(\time())
-			->setName('testQueue');
+			->setTopicName('testQueue');
 
 		/** @var RedisQueueSender $manager */
 		$manager = QueueManager::create()
 			->setSender(new RedisQueueSender())
 			->sender($send)
-            ->setDataForSend((string) \time());
+            ->setData((string) \time());
 
 		for ($i = 0; $i < 5000; $i++) {
             $manager->send();
