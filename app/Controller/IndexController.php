@@ -24,7 +24,10 @@ class IndexController extends AbstractController
 	 */
 	public function indexAction(): Render
 	{
-		$this->log(LogLevel::INFO, 'Test Kafka Queue for log');
+		for ($i =0; $i < 10000; $i++) {
+			$this->log(LogLevel::INFO, 'Test Kafka Queue for log ' . $i);
+		}
+
 
 		return $this->render('test.html');
 	}
