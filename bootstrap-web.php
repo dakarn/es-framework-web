@@ -9,28 +9,16 @@
 
 include_once __DIR__ . '/vendor/autoload.php';
 
-$env = \App\WebApp::ENV_PROD;
+$env = ES\App\WebApp::ENV_PROD;
 
 if (\IS_DEV) {
-	$env = \App\WebApp::ENV_DEV;
+	$env = ES\App\WebApp::ENV_DEV;
 	include_once 'dev.php';
 }
 
-$application = (new \App\WebApp())
+$application = (new ES\App\WebApp())
 	->setEnvironment($env)
-	->setApplicationType(\App\WebApp::APP_TYPE_WEB);
-
-\set_exception_handler(function($e) use($application) {
-	$application->outputException($e);
-});
-
-\set_error_handler(function($errno, $errstr, $errfile, $errline) use($application) {
-	$application->outputError($errno, $errstr, $errfile, $errline);
-});
-
-\register_shutdown_function(function() use($application) {
-	System\Kernel\ShutdownScript::run();
-});
+	->setApplicationType(ES\App\WebApp::APP_TYPE_WEB);
 
 $application->run();
 $application->outputResponse();
