@@ -6,21 +6,21 @@
  * Time: 14:53
  */
 
-namespace App;
+namespace ES\App;
 
-use Configs\Config;
-use Http\Request\ServerRequest;
-use Http\Middleware\StorageMiddleware;
-use Http\Response\Text;
-use Providers\StorageProviders;
-use Http\Response\Response;
-use System\EventListener\EventTypes;
-use System\Logger\Logger;
-use System\Logger\LoggerAware;
-use System\Logger\LogLevel;
-use System\Kernel\TypesApp\AbstractApplication;
-use System\Render;
-use System\EventListener\EventManager;
+use ES\Kernel\Configs\Config;
+use ES\Kernel\Http\Request\ServerRequest;
+use ES\Kernel\Http\Middleware\StorageMiddleware;
+use ES\Kernel\Http\Response\Text;
+use ES\Kernel\Providers\StorageProviders;
+use ES\Kernel\Http\Response\Response;
+use ES\Kernel\System\EventListener\EventTypes;
+use ES\Kernel\System\Logger\Logger;
+use ES\Kernel\System\Logger\LoggerAware;
+use ES\Kernel\System\Logger\LogLevel;
+use ES\Kernel\System\Kernel\TypesApp\AbstractApplication;
+use ES\Kernel\System\Render;
+use ES\Kernel\System\EventListener\EventManager;
 
 final class WebApp extends AbstractApplication implements WebAppInterface
 {

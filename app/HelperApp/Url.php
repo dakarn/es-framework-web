@@ -6,7 +6,7 @@
  * Time: 1:14
  */
 
-namespace App\HelperApp;
+namespace ES\App\HelperApp;
 
 class Url
 {

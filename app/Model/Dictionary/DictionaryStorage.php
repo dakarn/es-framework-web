@@ -6,9 +6,9 @@
  * Time: 18:35
  */
 
-namespace App\Model\Dictionary;
+namespace ES\App\Model\Dictionary;
 
-use System\Database\DB;
+use ES\Kernel\System\Database\DB;
 
 class DictionaryStorage
 {

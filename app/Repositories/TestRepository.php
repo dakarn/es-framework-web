@@ -6,7 +6,7 @@
  * Time: 22:50
  */
 
-namespace App\Repositories;
+namespace ES\App\Repositories;
 
 class TestRepository
 {

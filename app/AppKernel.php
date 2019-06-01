@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace ES\App;
 
 use Http\Middleware\MiddlewareAllowMethod;
 use Http\Middleware\MiddlewareAnonymousToken;

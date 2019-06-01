@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace ES\App;
 
-use App\Event\AfterResponse;
-use System\EventListener\EventManager;
-use System\EventListener\EventTypes;
-use App\Event\BeforeControllerEvent;
-use System\ES;
+use ES\App\Event\AfterResponse;
+use ES\Kernel\System\EventListener\EventManager;
+use ES\Kernel\System\EventListener\EventTypes;
+use ES\App\Event\BeforeControllerEvent;
+use ES\Kernel\System\ES;
 
 final class AppEvent
 {

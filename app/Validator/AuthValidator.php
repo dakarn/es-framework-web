@@ -6,11 +6,11 @@
  * Time: 22:04
  */
 
-namespace App\Validator;
+namespace ES\App\Validator;
 
-use Helper\Util;
-use System\Validators\AbstractValidator;
-use System\Validators\Validators;
+use ES\Kernel\Helper\Util;
+use ES\Kernel\System\Validators\AbstractValidator;
+use ES\Kernel\System\Validators\Validators;
 
 class AuthValidator extends AbstractValidator
 {
@@ -20,7 +20,7 @@ class AuthValidator extends AbstractValidator
 	public $isUseFlashErrors = true;
 
 	/**
-	 * @throws \Exception\FileException
+	 * @throws \ES\Kernel\Exception\FileException
 	 */
 	public function validate(): void
 	{

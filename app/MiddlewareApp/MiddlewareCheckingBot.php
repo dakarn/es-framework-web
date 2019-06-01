@@ -6,19 +6,20 @@
  * Time: 2:13
  */
 
-namespace App\MiddlewareApp;
+namespace ES\App\MiddlewareApp;
 
-use Http\Request\ServerRequest;
-use Http\Middleware\RequestHandler;
-use Http\Middleware\MiddlewareInterface;
+use ES\Kernel\Http\Request\ServerRequest;
+use ES\Kernel\Http\Middleware\RequestHandler;
+use ES\Kernel\Http\Middleware\MiddlewareInterface;
 
 class MiddlewareCheckingBot implements MiddlewareInterface
 {
-    /**
-     * @param ServerRequest $request
-     * @param RequestHandler $handler
-     * @return \Http\Response\Response
-     */
+	/**
+	 * @param ServerRequest $request
+	 * @param RequestHandler $handler
+	 * @return \ES\Kernel\Http\Response\Response
+	 * @throws \ES\Kernel\Exception\MiddlewareException
+	 */
 	public function process(ServerRequest $request, RequestHandler $handler)
 	{
 		return $handler->handle($request, $handler);

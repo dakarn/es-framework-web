@@ -1,10 +1,10 @@
 <?php
 
-namespace App\HelperApp;
+namespace ES\App\HelperApp;
 
-use Http\Request\ServerRequest;
-use System\Database\DB;
-use Traits\SingletonTrait;
+use ES\Kernel\Http\Request\ServerRequest;
+use ES\Kernel\System\Database\DB;
+use ES\Kernel\Traits\SingletonTrait;
 
 class Pagination
 {

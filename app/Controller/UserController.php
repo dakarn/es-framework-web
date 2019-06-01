@@ -6,14 +6,14 @@
  * Time: 1:22
  */
 
-namespace App\Controller;
+namespace ES\App\Controller;
 
-use App\Validator\AuthValidator;
-use App\Validator\RegisterValidator;
-use Models\User\User;
-use Helper\FlashText;
-use System\Controller\AbstractController;
-use System\Render;
+use ES\Kernel\App\Validator\AuthValidator;
+use ES\Kernel\App\Validator\RegisterValidator;
+use ES\Kernel\Models\User\User;
+use ES\Kernel\Helper\FlashText;
+use ES\Kernel\System\Controller\AbstractController;
+use ES\Kernel\System\Render;
 
 class UserController extends AbstractController
 {

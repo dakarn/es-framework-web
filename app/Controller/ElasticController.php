@@ -1,19 +1,19 @@
-<?php
+<?php /** @noinspection ALL */
 
-namespace App\Controller;
+namespace ES\App\Controller;
 
-use App\Model\Dictionary\Dictionary;
-use App\Model\Dictionary\DictionaryRepository;
-use Configs\Config;
-use System\Controller\AbstractController;
-use ElasticSearch\ElasticSearch;
-use System\Render;
+use ES\App\Model\Dictionary\Dictionary;
+use ES\App\Model\Dictionary\DictionaryRepository;
+use ES\Kernel\Configs\Config;
+use ES\Kernel\System\Controller\AbstractController;
+use ES\Kernel\ElasticSearch\ElasticSearch;
+use ES\Kernel\System\Render;
 
 class ElasticController extends AbstractController
 {
 	/**
 	 * @return Render
-	 * @throws \Exception\FileException
+	 * @throws \ES\Kernel\Exception\FileException
 	 */
 	public function addIndexAction(): Render
 	{

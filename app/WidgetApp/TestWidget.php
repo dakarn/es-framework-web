@@ -6,9 +6,9 @@
  * Time: 15:48
  */
 
-namespace App\WidgetApp;
+namespace ES\App\WidgetApp;
 
-use Widget\AbstractWidget;
+use ES\Kernel\Widget\AbstractWidget;
 
 class TestWidget extends AbstractWidget
 {

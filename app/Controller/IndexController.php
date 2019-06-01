@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Controller;
+namespace ES\App\Controller;
 
-use Kafka\ConfigureConnect;
-use Kafka\Kafka;
-use QueueManager\QueueModel;
-use QueueManager\QueueManager;
-use QueueManager\Senders\RedisQueueSender;
-use System\Controller\AbstractController;
-use App\Model\Dictionary\DictionaryRepository;
-use App\Validator\SearchWordValidator;
-use System\Logger\LogLevel;
-use System\Render;
-use Widget\WidgetFactory;
-use App\Model\Test\ModelTest;
-use ObjectMapper\ObjectMapper;
+use ES\Kernel\Kafka\ConfigureConnect;
+use ES\Kernel\Kafka\Kafka;
+use ES\Kernel\QueueManager\QueueModel;
+use ES\Kernel\QueueManager\QueueManager;
+use ES\Kernel\QueueManager\Senders\RedisQueueSender;
+use ES\Kernel\System\Controller\AbstractController;
+use ES\App\Model\Dictionary\DictionaryRepository;
+use ES\App\Validator\SearchWordValidator;
+use ES\Kernel\System\Logger\LogLevel;
+use ES\Kernel\System\Render;
+use ES\Kernel\Widget\WidgetFactory;
+use ES\App\Model\Test\ModelTest;
+use ES\Kernel\ObjectMapper\ObjectMapper;
 
 class IndexController extends AbstractController
 {

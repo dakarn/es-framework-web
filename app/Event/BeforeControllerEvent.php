@@ -6,9 +6,9 @@
  * Time: 1:49
  */
 
-namespace App\Event;
+namespace ES\App\Event;
 
-use System\EventListener\EventListenerInterface;
+use ES\Kernel\System\EventListener\EventListenerInterface;
 
 class BeforeControllerEvent implements EventListenerInterface
 {

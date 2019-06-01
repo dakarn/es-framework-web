@@ -6,14 +6,14 @@
  * Time: 23:43
  */
 
-namespace App\MiddlewareApp;
+namespace ES\App\MiddlewareApp;
 
-use Http\Request\ServerRequest;
-use Http\Middleware\MiddlewareInterface;
-use Http\Middleware\RequestHandler;
-use Http\Response\Response;
-use Models\User\User;
-use System\Router\Routing;
+use ES\Kernel\Http\Request\ServerRequest;
+use ES\Kernel\Http\Middleware\MiddlewareInterface;
+use ES\Kernel\Http\Middleware\RequestHandler;
+use ES\Kernel\Http\Response\Response;
+use ES\Kernel\Models\User\User;
+use ES\Kernel\System\Router\Routing;
 
 class MiddlewareCheckAuth implements MiddlewareInterface
 {
@@ -21,7 +21,8 @@ class MiddlewareCheckAuth implements MiddlewareInterface
 	 * @param ServerRequest $request
 	 * @param RequestHandler $handler
 	 * @return Response|mixed
-	 * @throws \Exception\FileException
+	 * @throws \ES\Kernel\Exception\FileException
+	 * @throws \ES\Kernel\Exception\MiddlewareException
 	 */
 	public function process(ServerRequest $request, RequestHandler $handler)
 	{

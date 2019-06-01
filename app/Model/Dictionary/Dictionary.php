@@ -6,7 +6,7 @@
  * Time: 17:38
  */
 
-namespace App\Model\Dictionary;
+namespace ES\App\Model\Dictionary;
 
 class Dictionary
 {

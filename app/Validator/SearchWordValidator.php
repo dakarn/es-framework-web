@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Validator;
+namespace ES\App\Validator;
 
-use System\Validators\AbstractValidator;
+use ES\Kernel\System\Validators\AbstractValidator;
 
 class SearchWordValidator extends AbstractValidator
 {
