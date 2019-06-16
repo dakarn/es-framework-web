@@ -2,13 +2,13 @@
 
 namespace ES\App;
 
-use Http\Middleware\MiddlewareAllowMethod;
-use Http\Middleware\MiddlewareAnonymousToken;
-use Http\Middleware\MiddlewareController;
-use Http\Middleware\MiddlewareGrantAccess;
-use Http\Middleware\MiddlewarePreController;
-use Http\Middleware\MiddlewareRouting;
-use System\ES;
+use ES\Kernel\Http\Middleware\MiddlewareAllowMethod;
+use ES\Kernel\Http\Middleware\MiddlewareAnonymousToken;
+use ES\Kernel\Http\Middleware\MiddlewareController;
+use ES\Kernel\Http\Middleware\MiddlewareGrantAccess;
+use ES\Kernel\Http\Middleware\MiddlewarePreController;
+use ES\Kernel\Http\Middleware\MiddlewareRouting;
+use ES\Kernel\Helper\ES;
 
 final class AppKernel
 {

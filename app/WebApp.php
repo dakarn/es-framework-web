@@ -14,13 +14,13 @@ use ES\Kernel\Http\Middleware\StorageMiddleware;
 use ES\Kernel\Http\Response\Text;
 use ES\Kernel\Providers\StorageProviders;
 use ES\Kernel\Http\Response\Response;
-use ES\Kernel\System\EventListener\EventTypes;
-use ES\Kernel\System\Logger\Logger;
-use ES\Kernel\System\Logger\LoggerAware;
-use ES\Kernel\System\Logger\LogLevel;
-use ES\Kernel\System\Kernel\TypesApp\AbstractApplication;
-use ES\Kernel\System\Render;
-use ES\Kernel\System\EventListener\EventManager;
+use ES\Kernel\EventListener\EventTypes;
+use ES\Kernel\Logger\Logger;
+use ES\Kernel\Logger\LoggerAware;
+use ES\Kernel\Logger\LogLevel;
+use ES\Kernel\Kernel\TypesApp\AbstractApplication;
+use ES\Kernel\Helper\Render;
+use ES\Kernel\EventListener\EventManager;
 
 final class WebApp extends AbstractApplication implements WebAppInterface
 {
@@ -41,7 +41,7 @@ final class WebApp extends AbstractApplication implements WebAppInterface
 
 	/**
 	 * @return WebApp
-	 * @throws \Exception\MiddlewareException
+	 * @throws \ES\Kernel\Exception\MiddlewareException
 	 */
 	public function handle(): WebApp
 	{
@@ -51,7 +51,6 @@ final class WebApp extends AbstractApplication implements WebAppInterface
 	}
 
 	/**
-	 * @throws \Exception\FileException
 	 * @throws \Throwable
 	 */
 	public function run()

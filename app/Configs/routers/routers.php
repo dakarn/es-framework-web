@@ -1,8 +1,8 @@
 <?php
 
 use ES\App\MiddlewareApp\MiddlewareCheckAuth;
-use ES\Http\Middleware\MiddlewareGrantAccess;
-use ES\Models\User\User;
+use ES\Kernel\Http\Middleware\MiddlewareGrantAccess;
+use ES\Kernel\Models\User\User;
 
 return [
 	[

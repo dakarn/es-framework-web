@@ -3,10 +3,10 @@
 namespace ES\App;
 
 use ES\App\Event\AfterResponse;
-use ES\Kernel\System\EventListener\EventManager;
-use ES\Kernel\System\EventListener\EventTypes;
+use ES\Kernel\EventListener\EventManager;
+use ES\Kernel\EventListener\EventTypes;
 use ES\App\Event\BeforeControllerEvent;
-use ES\Kernel\System\ES;
+use ES\Kernel\Helper\ES;
 
 final class AppEvent
 {

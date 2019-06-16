@@ -9,8 +9,8 @@
 namespace ES\App\Validator;
 
 use ES\Kernel\Helper\Util;
-use ES\Kernel\System\Validators\AbstractValidator;
-use ES\Kernel\System\Validators\Validators;
+use ES\Kernel\Validators\AbstractValidator;
+use ES\Kernel\Validators\Validators;
 
 class RegisterValidator extends AbstractValidator
 {

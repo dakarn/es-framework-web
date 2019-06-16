@@ -3,7 +3,7 @@
 namespace ES\App\HelperApp;
 
 use ES\Kernel\Http\Request\ServerRequest;
-use ES\Kernel\System\Database\DB;
+use ES\Kernel\Database\DB;
 use ES\Kernel\Traits\SingletonTrait;
 
 class Pagination

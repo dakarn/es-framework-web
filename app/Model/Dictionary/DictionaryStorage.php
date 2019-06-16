@@ -8,20 +8,15 @@
 
 namespace ES\App\Model\Dictionary;
 
-use ES\Kernel\System\Database\DB;
+use ES\Kernel\Database\DB;
 
 class DictionaryStorage
 {
 	public function getDictionaries(): array
 	{
-		$data = [];
-		$query = DB::create()->query('SELECT *
+		$data = DB::getMySQL()->getTeacher()->fetch('SELECT *
 		FROM english_teacher 
 		ORDER BY id LIMIT 20');
-
-		while ($row = $query->fetch_assoc()) {
-			$data[] = $row;
-		}
 
 		return $data;
 	}
@@ -43,19 +38,19 @@ class DictionaryStorage
 
 	public function getDictionaryById(int $id): array
 	{
-		$query = DB::create()->query('SELECT *
+		$query = DB::getMySQL()->getTeacher()->fetch('SELECT *
 		FROM english_teacher
 		WHERE id = ' . $id);
 
-		return $query->fetch_assoc();
+		return $query;
 	}
 
 	public function getDictionaryByText(Dictionary $dictionary): array
 	{
-		$query = DB::create()->query('SELECT *
+		$query = DB::getMySQL()->getTeacher()->fetch('SELECT *
 		FROM english_teacher
 		WHERE text = "' . $dictionary->getText() . '"');
 
-		return $query->fetch_assoc();
+		return $query;
 	}
 }

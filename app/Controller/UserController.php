@@ -8,12 +8,12 @@
 
 namespace ES\App\Controller;
 
-use ES\Kernel\App\Validator\AuthValidator;
-use ES\Kernel\App\Validator\RegisterValidator;
+use ES\App\Validator\AuthValidator;
+use ES\App\Validator\RegisterValidator;
 use ES\Kernel\Models\User\User;
 use ES\Kernel\Helper\FlashText;
-use ES\Kernel\System\Controller\AbstractController;
-use ES\Kernel\System\Render;
+use ES\Kernel\Controller\AbstractController;
+use ES\Kernel\Helper\Render;
 
 class UserController extends AbstractController
 {
@@ -23,8 +23,10 @@ class UserController extends AbstractController
 	}
 
 	/**
-	 * @return \System\Render
-	 * @throws \Exception
+	 * @return Render
+	 * @throws \ES\Kernel\Exception\FileException
+	 * @throws \ES\Kernel\Exception\KernelException
+	 * @throws \ES\Kernel\Exception\RoutingException
 	 */
 	public function authAction(): Render
 	{
@@ -50,7 +52,7 @@ class UserController extends AbstractController
 
 	/**
 	 * @return Render
-	 * @throws \Exception\FileException
+	 * @throws \ES\Kernel\Exception\FileException
 	 */
 	public function registerAction(): Render
 	{
@@ -75,9 +77,9 @@ class UserController extends AbstractController
 
 	/**
 	 * @return Render
-	 * @throws \Exception\FileException
-	 * @throws \Exception\KernelException
-	 * @throws \Exception\RoutingException
+	 * @throws \ES\Kernel\Exception\FileException
+	 * @throws \ES\Kernel\Exception\KernelException
+	 * @throws \ES\Kernel\Exception\RoutingException
 	 */
 	public function profileAction(): Render
 	{
@@ -89,7 +91,7 @@ class UserController extends AbstractController
 	}
 
 	/**
-	 * @throws \Exception\FileException
+	 * @throws \ES\Kernel\Exception\FileException
 	 */
 	public function logoutAction()
 	{

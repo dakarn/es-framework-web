@@ -13,7 +13,7 @@ use ES\Kernel\Http\Middleware\MiddlewareInterface;
 use ES\Kernel\Http\Middleware\RequestHandler;
 use ES\Kernel\Http\Response\Response;
 use ES\Kernel\Models\User\User;
-use ES\Kernel\System\Router\Routing;
+use ES\Kernel\Router\Routing;
 
 class MiddlewareCheckAuth implements MiddlewareInterface
 {

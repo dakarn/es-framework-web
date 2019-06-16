@@ -2,16 +2,14 @@
 
 namespace ES\App\Controller;
 
-use ES\Kernel\Kafka\ConfigureConnect;
-use ES\Kernel\Kafka\Kafka;
 use ES\Kernel\QueueManager\QueueModel;
 use ES\Kernel\QueueManager\QueueManager;
 use ES\Kernel\QueueManager\Senders\RedisQueueSender;
-use ES\Kernel\System\Controller\AbstractController;
+use ES\Kernel\Controller\AbstractController;
 use ES\App\Model\Dictionary\DictionaryRepository;
 use ES\App\Validator\SearchWordValidator;
-use ES\Kernel\System\Logger\LogLevel;
-use ES\Kernel\System\Render;
+use ES\Kernel\Logger\LogLevel;
+use ES\Kernel\Helper\Render;
 use ES\Kernel\Widget\WidgetFactory;
 use ES\App\Model\Test\ModelTest;
 use ES\Kernel\ObjectMapper\ObjectMapper;
@@ -20,7 +18,7 @@ class IndexController extends AbstractController
 {
 	/**
 	 * @return Render
-	 * @throws \Exception\FileException
+	 * @throws \ES\Kernel\Exception\FileException
 	 */
 	public function indexAction(): Render
 	{
@@ -39,9 +37,9 @@ class IndexController extends AbstractController
 
 	/**
 	 * @return Render
-	 * @throws \Exception\FileException
-	 * @throws \Exception\ObjectException
-	 * @throws \Exception\WidgetException
+	 * @throws \ES\Kernel\Exception\FileException
+	 * @throws \ES\Kernel\Exception\ObjectException
+	 * @throws \ES\Kernel\Exception\WidgetException
 	 */
 	public function index1Action(): Render
 	{
@@ -66,7 +64,7 @@ class IndexController extends AbstractController
 		WidgetFactory::run('test');
 
 		$send = (new QueueModel())
-			->setName('converter-video-1')
+			->setTopicName('converter-video-1')
 			->setFlags('')
 			->setExchangeName('converter-video-1')
 			->setRoutingKey('sendMail')
@@ -94,7 +92,7 @@ class IndexController extends AbstractController
 
 	/**
 	 * @return Render
-	 * @throws \Exception\FileException
+	 * @throws \ES\Kernel\Exception\FileException
 	 */
 	public function searchWordAction(): Render
 	{
@@ -106,7 +104,7 @@ class IndexController extends AbstractController
 		$manager = QueueManager::create()
 			->setSender(new RedisQueueSender())
 			->sender($send)
-            ->setData((string) \time());
+            ->setDataString((string) \time());
 
 		for ($i = 0; $i < 5000; $i++) {
             $manager->send();

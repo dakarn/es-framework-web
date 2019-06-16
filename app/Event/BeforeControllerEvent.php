@@ -8,7 +8,7 @@
 
 namespace ES\App\Event;
 
-use ES\Kernel\System\EventListener\EventListenerInterface;
+use ES\Kernel\EventListener\EventListenerInterface;
 
 class BeforeControllerEvent implements EventListenerInterface
 {

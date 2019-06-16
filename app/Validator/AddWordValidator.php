@@ -2,7 +2,7 @@
 
 namespace ES\App\Validator;
 
-use ES\Kernel\System\Validators\AbstractValidator;
+use ES\Kernel\Validators\AbstractValidator;
 
 class AddWordValidator extends AbstractValidator
 {
